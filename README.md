@@ -10,7 +10,8 @@ A basic tool written in rust that makes a html page for embeding videos in disco
 
 ## Usage
 
-```bash
+```
+video_web_page_generator
 Create a quick and easy Twitter and Discord compliant page to embed videos in those platforms. Make
 sure the video file and the resulting .html file are both in the url location you specifiy
 
@@ -30,7 +31,11 @@ OPTIONS:
     -o, --out <OUT>
             The html file to output [default: ./index.html]
 
-    -p, --page-title <PAGE_TITLE>
+    -p, --poster <POSTER>
+            The path to a jpeg or png file you want to use as the video's thumbnail (Required for
+            AV1 videos to work in Discord) [default: ]
+
+    -t, --title <TITLE>
             The title for the page [default: ]
 
     -u, --url <URL>
