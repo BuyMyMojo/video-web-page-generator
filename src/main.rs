@@ -1,5 +1,3 @@
-#![allow(unused)]
-
 use clap::Parser;
 use std::path::Path;
 use std::fs;
@@ -36,14 +34,14 @@ struct Cli {
 
 }
 
-const html_part1: &str = "<!DOCTYPE html>
+const HTML_PART1: &str = "<!DOCTYPE html>
 <html lang=\"en\" prefix=\"og: http://ogp.me/ns#\">
 <head>
     <meta charset=\"UTF-8\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
     <title>";
     
-    const html_part2: &str = "</title>
+    const HTML_PART2: &str = "</title>
     <style>
         body {
             background-color: #000;
@@ -66,42 +64,42 @@ const html_part1: &str = "<!DOCTYPE html>
 
     <meta property=\"og:title\" content=\""; 
 
-    const html_part3: &str = "\">
+    const HTML_PART3: &str = "\">
     <meta property=\"og:description\" content=\"";
 
-    const html_part4: &str = "\">
+    const HTML_PART4: &str = "\">
     <meta property=\"og:type\" content=\"video.other\">
     <meta property=\"og:video:url\" content=\"";
 
-    const html_part5: &str = "\">
+    const HTML_PART5: &str = "\">
     <meta property=\"og:video:type\" content=\"video/";
 
-    const html_part6: &str = "\">
+    const HTML_PART6: &str = "\">
     <meta property=\"og:video:width\" content=\"";
 
-    const html_part7: &str = "\">
+    const HTML_PART7: &str = "\">
     <meta property=\"og:video:height\" content=\"";
 
-    const html_part8: &str = "\">
+    const HTML_PART8: &str = "\">
     
     <meta name=\"twitter:card\" content=\"player\">";
 
-    const html_part9: &str = "
+    const HTML_PART9: &str = "
     <meta name=\"twitter:title\" content=\"";
 
-    const html_part10: &str = "\">
+    const HTML_PART10: &str = "\">
     <meta name=\"twitter:player\" content=\"";
 
-    const html_part11: &str = "\">
+    const HTML_PART11: &str = "\">
     <meta name=\"twitter:player:height\" content=\"";
 
-    const html_part12: &str = "\">
+    const HTML_PART12: &str = "\">
     <meta name=\"twitter:player:width\" content=\"";
 
-    const html_part13: &str = "\">
+    const HTML_PART13: &str = "\">
     <meta name=\"twitter:description\" content=\"";
 
-    const html_part14: &str = "\">
+    const HTML_PART14: &str = "\">
     </head>
     <body>
         <center>
@@ -109,9 +107,9 @@ const html_part1: &str = "<!DOCTYPE html>
                 <video controls preload=\"auto\">
                     <source src=\"";
     
-    const html_part15: &str = "\" type=\"video/";
+    const HTML_PART15: &str = "\" type=\"video/";
 
-    const html_part16: &str = "\">
+    const HTML_PART16: &str = "\">
             </video>
         </div>
     </center>
@@ -128,10 +126,10 @@ fn main() {
     let output_path = Path::new(&args.out);
     let out_file_name = output_path.file_name().unwrap().to_str().unwrap();
 
-    let mut page_title = format_title(args.page_title, file_name);
-    let mut video_description = &format_description(args.video_description, file_name);
+    let page_title = format_title(args.page_title, file_name);
+    let video_description = &format_description(args.video_description, file_name);
 
-    let html_page = format!("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}", html_part1, page_title, html_part2, page_title, html_part3, video_description, html_part4, video_url, html_part5, file_type, html_part6, args.width, html_part7, args.height, html_part8, html_part9, page_title, html_part10, video_url, html_part11, args.height, html_part12, args.width, html_part13, video_description, html_part14, video_url, html_part15, file_type, html_part16);
+    let html_page = format!("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}", HTML_PART1, page_title, HTML_PART2, page_title, HTML_PART3, video_description, HTML_PART4, video_url, HTML_PART5, file_type, HTML_PART6, args.width, HTML_PART7, args.height, HTML_PART8, HTML_PART9, page_title, HTML_PART10, video_url, HTML_PART11, args.height, HTML_PART12, args.width, HTML_PART13, video_description, HTML_PART14, video_url, HTML_PART15, file_type, HTML_PART16);
 
     fs::write(&args.out, html_page).expect("Unable to write file, make sure you include the file name and .html with -o");
 
