@@ -2,10 +2,10 @@
 
 A basic tool written in rust that makes a html page for embeding videos in discord and twitter from other websites.
 
-
 ## Badges
 
-[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v2-yellow.svg)](https://choosealicense.com/licenses/gpl-2.0//)
+![Crates.io](https://img.shields.io/crates/v/video_web_page_generator)
+![Crates.io](https://img.shields.io/crates/l/video_web_page_generator)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/BuyMyMojo/video-web-page-generator/Rust)
 
 ## Usage

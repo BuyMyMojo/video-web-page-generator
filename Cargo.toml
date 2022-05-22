@@ -1,6 +1,6 @@
 [package]
 name = "video_web_page_generator"
-version = "0.1.1"
+version = "0.1.1.1"
 edition = "2021"
 description = "A basic tool written in rust that makes a html page for embeding videos in discord and twitter from other websites."
 readme = "README.md"
