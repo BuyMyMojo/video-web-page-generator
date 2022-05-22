@@ -44,8 +44,13 @@ OPTIONS:
             The width of the video in pixels
 ```
 
-
 ## Installation
+
+install with just cargo:
+
+```bash
+  cargo install video-web-page-generator
+```
 
 Install from github with cargo:
 
@@ -54,4 +59,3 @@ Install from github with cargo:
   cd video-web-page-generator
   cargo install --path ./
 ```
-    
