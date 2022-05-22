@@ -49,7 +49,7 @@ OPTIONS:
 install with just cargo:
 
 ```bash
-  cargo install video-web-page-generator
+  cargo install video_web_page_generator
 ```
 
 Install from github with cargo:
