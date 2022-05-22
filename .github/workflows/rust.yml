@@ -27,7 +27,7 @@ jobs:
       run: cargo build --release --verbose
     - uses: actions/upload-artifact@v3
       with:
-          name: debug-build
+          name: release-build
           path: /home/runner/work/video-web-page-generator/video-web-page-generator/target/release/
           if-no-files-found: error
     
