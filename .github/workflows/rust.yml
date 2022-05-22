@@ -16,11 +16,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build
+    - name: Debug Build
       run: cargo build --verbose
     - uses: actions/upload-artifact@v3
       with:
           name: debug-build
           path: /home/runner/work/video-web-page-generator/video-web-page-generator/target/debug/
+          if-no-files-found: error
+    - name: Release Build
+      run: cargo build --release --verbose
+    - uses: actions/upload-artifact@v3
+      with:
+          name: debug-build
+          path: /home/runner/work/video-web-page-generator/video-web-page-generator/target/release/
           if-no-files-found: error
     
