@@ -12,6 +12,10 @@ struct Cli {
     #[clap(short, long, default_value = "./index.html")]
     out: String,
 
+    /// The path to a jpeg or png file you want to use as the video's thumbnail (Required for AV1 videos to work in Discord)
+    #[clap(short, long, default_value = "")]
+    poster: String,
+
     /// The height of the video in pixels
     #[clap(short, long)]
     height: u32,
@@ -22,7 +26,7 @@ struct Cli {
 
     /// The title for the page
     #[clap(short, long, default_value = "")]
-    page_title: String,
+    title: String,
 
     /// The description for the video
     #[clap(short, long, default_value = "")]
@@ -126,10 +130,14 @@ fn main() {
     let output_path = Path::new(&args.out);
     let out_file_name = output_path.file_name().unwrap().to_str().unwrap();
 
-    let page_title = format_title(args.page_title, file_name);
+    let poster_file = Path::new(&args.poster);
+    let poster_name = poster_file.file_name().unwrap().to_str().unwrap();
+    let poster_url = format!("{}{}", args.url, poster_name);
+
+    let page_title = format_title(args.title, file_name);
     let video_description = &format_description(args.video_description, file_name);
 
-    let html_page = format!("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}", HTML_PART1, page_title, HTML_PART2, page_title, HTML_PART3, video_description, HTML_PART4, video_url, HTML_PART5, file_type, HTML_PART6, args.width, HTML_PART7, args.height, HTML_PART8, HTML_PART9, page_title, HTML_PART10, video_url, HTML_PART11, args.height, HTML_PART12, args.width, HTML_PART13, video_description, HTML_PART14, video_url, HTML_PART15, file_type, HTML_PART16);
+    let html_page = format!("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}", HTML_PART1, page_title, HTML_PART2, page_title, HTML_PART3, video_description, HTML_PART4, video_url, HTML_PART5, file_type, HTML_PART6, args.width, HTML_PART7, args.height, add_poster(poster_url, HTML_PART8), HTML_PART9, page_title, HTML_PART10, video_url, HTML_PART11, args.height, HTML_PART12, args.width, HTML_PART13, video_description, HTML_PART14, video_url, HTML_PART15, file_type, HTML_PART16);
 
     fs::write(&args.out, html_page).expect("Unable to write file, make sure you include the file name and .html with -o");
 
@@ -152,5 +160,17 @@ fn format_title(title: String, file_name: &str) -> String
         return title;
     } else {
         return file_name.to_string();
+    }
+}
+
+fn add_poster(poster: String, html_in: &str) -> String{
+    let htmlpt1 = "<meta name=\"twitter:image\" content=\"";
+    let htmlpt2 = "\">
+    <meta property=\"og:image\" content=\"";
+    let htmlp3 = "\">";
+    if poster != ""{
+        return format!("{}{}{}{}{}{}", htmlpt1, poster, htmlpt2, poster, htmlp3, html_in)
+    } else {
+        return html_in.to_string();
     }
 }
