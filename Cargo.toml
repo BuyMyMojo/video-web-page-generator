@@ -2,8 +2,13 @@
 name = "video_web_page_generator"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = "A basic tool written in rust that makes a html page for embeding videos in discord and twitter from other websites."
+readme = "README.md"
+repository = "https://github.com/BuyMyMojo/video-web-page-generator/"
+license = "GPL-2.0"
+keywords = ["html", "video"]
+categories = ["command-line-utilities"]
+exclude = ["/index.html", "/target", "/.vscode"]
 
 [dependencies]
 clap = { version = "3.1.18", features = ["derive"] }
