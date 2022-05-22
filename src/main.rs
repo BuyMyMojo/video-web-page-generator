@@ -137,7 +137,7 @@ fn main() {
     let page_title = format_title(args.title, file_name);
     let video_description = &format_description(args.video_description, file_name);
 
-    let html_page = format!("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}", HTML_PART1, page_title, HTML_PART2, page_title, HTML_PART3, video_description, HTML_PART4, video_url, HTML_PART5, file_type, HTML_PART6, args.width, HTML_PART7, args.height, add_poster(poster_url, HTML_PART8), HTML_PART9, page_title, HTML_PART10, video_url, HTML_PART11, args.height, HTML_PART12, args.width, HTML_PART13, video_description, HTML_PART14, video_url, HTML_PART15, file_type, HTML_PART16);
+    let html_page = format!("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}", HTML_PART1, page_title, HTML_PART2, page_title, HTML_PART3, video_description, HTML_PART4, video_url, HTML_PART5, file_type, HTML_PART6, args.width, HTML_PART7, args.height, add_poster(poster_url, HTML_PART8), HTML_PART9, page_title, HTML_PART10, video_url, HTML_PART11, args.height, HTML_PART12, args.width, HTML_PART13, video_url, HTML_PART14, video_url, HTML_PART15, file_type, HTML_PART16);
 
     fs::write(&args.out, html_page).expect("Unable to write file, make sure you include the file name and .html with -o");
 
@@ -167,9 +167,8 @@ fn add_poster(poster: String, html_in: &str) -> String{
     let htmlpt1 = "<meta name=\"twitter:image\" content=\"";
     let htmlpt2 = "\">
     <meta property=\"og:image\" content=\"";
-    let htmlp3 = "\">";
     if poster != ""{
-        return format!("{}{}{}{}{}{}", htmlpt1, poster, htmlpt2, poster, htmlp3, html_in)
+        return format!("{}{}{}{}{}", htmlpt1, poster, htmlpt2, poster, html_in)
     } else {
         return html_in.to_string();
     }
